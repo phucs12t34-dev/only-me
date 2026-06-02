@@ -1,0 +1,1574 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phúc S12T34 | Lập trình, Robotics và AI</title>
+  <meta name="description" content="Portfolio giới thiệu Phúc theo phong cách lập trình, robotics và AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06080d;
+      --panel: rgba(14, 20, 31, 0.78);
+      --panel-strong: rgba(20, 29, 43, 0.92);
+      --line: rgba(132, 162, 201, 0.22);
+      --text: #ecf4ff;
+      --muted: #93a4b8;
+      --cyan: #39d8ff;
+      --green: #4cf2a7;
+      --amber: #ffc857;
+      --red: #ff5c7a;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(57, 216, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 86% 18%, rgba(76, 242, 167, 0.13), transparent 27%),
+        linear-gradient(135deg, #05070b 0%, #0c111b 48%, #06080d 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(132, 162, 201, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(132, 162, 201, 0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, black, transparent 86%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 8, 13, 0.74);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(57, 216, 255, 0.55);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      background: rgba(57, 216, 255, 0.08);
+      box-shadow: 0 0 28px rgba(57, 216, 255, 0.15);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      padding: 9px 12px;
+      border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 72px);
+      padding: 70px 0 48px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid rgba(76, 242, 167, 0.32);
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(76, 242, 167, 0.08);
+      font: 700 12px/1 "JetBrains Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(76, 242, 167, 0.12);
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      max-width: 760px;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 640px;
+      margin: 0;
+      color: #b8c6d8;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font-weight: 800;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(57, 216, 255, 0.55);
+    }
+
+    .btn.primary {
+      color: #031016;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 18px 50px rgba(57, 216, 255, 0.22);
+    }
+
+    .btn.ghost {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 620px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--text);
+      font: 800 22px/1 "JetBrains Mono", monospace;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .terminal-wrap {
+      position: relative;
+    }
+
+    .profile-visual {
+      display: grid;
+      gap: 18px;
+    }
+
+    .avatar-card {
+      position: relative;
+      min-height: 430px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(57, 216, 255, 0.08), rgba(6, 8, 13, 0.22)),
+        rgba(255, 255, 255, 0.04);
+      box-shadow: var(--shadow);
+    }
+
+    .avatar-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+
+    .avatar-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(57, 216, 255, 0.42);
+      font: 800 128px/1 "JetBrains Mono", monospace;
+      background:
+        radial-gradient(circle at 50% 36%, rgba(57, 216, 255, 0.15), transparent 34%),
+        linear-gradient(135deg, rgba(8, 12, 19, 0.94), rgba(15, 26, 38, 0.96));
+    }
+
+    .avatar-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(180deg, transparent 48%, rgba(3, 7, 12, 0.82) 100%),
+        linear-gradient(90deg, rgba(57, 216, 255, 0.1), transparent 45%);
+      pointer-events: none;
+    }
+
+    .avatar-badge {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 3;
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(6, 8, 13, 0.72);
+      backdrop-filter: blur(14px);
+    }
+
+    .avatar-badge span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--green);
+      font: 800 12px/1 "JetBrains Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .avatar-badge strong {
+      display: block;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .terminal-wrap::before,
+    .terminal-wrap::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(57, 216, 255, 0.28);
+      pointer-events: none;
+    }
+
+    .terminal-wrap::before {
+      inset: -18px 28px 28px -18px;
+      border-radius: 8px;
+    }
+
+    .terminal-wrap::after {
+      inset: 28px -18px -18px 28px;
+      border-radius: 8px;
+      border-color: rgba(76, 242, 167, 0.2);
+    }
+
+    .terminal {
+      position: relative;
+      z-index: 1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(8, 12, 19, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .terminal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot:nth-child(1) { background: var(--red); }
+    .dot:nth-child(2) { background: var(--amber); }
+    .dot:nth-child(3) { background: var(--green); }
+
+    .terminal-title {
+      color: var(--muted);
+      font: 500 12px/1 "JetBrains Mono", monospace;
+    }
+
+    .terminal-body {
+      padding: 22px;
+      font: 500 14px/1.85 "JetBrains Mono", monospace;
+      color: #dce8f7;
+    }
+
+    .line {
+      display: block;
+      white-space: pre-wrap;
+    }
+
+    .comment { color: #7f91a8; }
+    .cyan { color: var(--cyan); }
+    .green { color: var(--green); }
+    .amber { color: var(--amber); }
+
+    .robot {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 16px;
+      border: 1px solid rgba(57, 216, 255, 0.22);
+      border-radius: 8px;
+      background: rgba(57, 216, 255, 0.06);
+    }
+
+    .bot-face {
+      position: relative;
+      width: 92px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(76, 242, 167, 0.5);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, transparent 47%, rgba(76, 242, 167, 0.2) 48% 52%, transparent 53%),
+        linear-gradient(180deg, rgba(57, 216, 255, 0.13), rgba(76, 242, 167, 0.07));
+    }
+
+    .bot-face::before,
+    .bot-face::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(57, 216, 255, 0.9);
+    }
+
+    .bot-face::before { left: 24px; }
+    .bot-face::after { right: 24px; }
+
+    .bot-mouth {
+      position: absolute;
+      left: 25px;
+      right: 25px;
+      bottom: 28px;
+      height: 8px;
+      border: 1px solid rgba(76, 242, 167, 0.7);
+      border-radius: 999px;
+    }
+
+    .robot strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .robot p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 74px 0;
+      border-top: 1px solid rgba(132, 162, 201, 0.14);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 440px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 210px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+    }
+
+    .card .icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      color: #061017;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      font: 800 18px/1 "JetBrains Mono", monospace;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    #hobbies .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hobby-card {
+      min-height: 250px;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #d9e8f8;
+      background: rgba(255, 255, 255, 0.05);
+      font: 700 13px/1 "JetBrains Mono", monospace;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+
+    .project-main {
+      min-height: 360px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(57, 216, 255, 0.12), transparent 48%),
+        linear-gradient(225deg, rgba(76, 242, 167, 0.1), transparent 45%),
+        var(--panel-strong);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .circuit {
+      position: absolute;
+      inset: auto -90px -90px auto;
+      width: 310px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(57, 216, 255, 0.26);
+      border-radius: 50%;
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(57, 216, 255, 0.28) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(76, 242, 167, 0.22) 50%, transparent 51%);
+    }
+
+    .project-main h3 {
+      position: relative;
+      margin: 0 0 14px;
+      max-width: 570px;
+      font-size: 28px;
+    }
+
+    .project-main p {
+      position: relative;
+      max-width: 610px;
+      margin: 0;
+      color: #b8c6d8;
+      line-height: 1.7;
+    }
+
+    .output-card {
+      position: relative;
+      z-index: 1;
+      margin-top: 22px;
+      border: 1px solid rgba(57, 216, 255, 0.22);
+      border-radius: 8px;
+      background: rgba(3, 7, 12, 0.76);
+      overflow: hidden;
+    }
+
+    .output-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(132, 162, 201, 0.18);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .output-title,
+    .output-live {
+      font: 700 12px/1 "JetBrains Mono", monospace;
+    }
+
+    .output-title {
+      color: #b8c6d8;
+    }
+
+    .output-live {
+      color: var(--green);
+    }
+
+    .heart-output {
+      margin: 0;
+      padding: 16px 10px 18px;
+      display: block;
+      min-height: 292px;
+      color: #ff6b91;
+      text-align: center;
+      text-shadow: 0 0 18px rgba(255, 92, 122, 0.62);
+      font: 800 11px/1.08 "JetBrains Mono", monospace;
+      white-space: pre;
+      overflow: hidden;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .mini span {
+      color: var(--green);
+      font: 700 12px/1 "JetBrains Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .mini h3 {
+      margin: 10px 0 8px;
+      font-size: 17px;
+    }
+
+    .mini p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .lab-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(8, 12, 19, 0.82);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .lab-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 54px;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(132, 162, 201, 0.18);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .lab-top span {
+      color: var(--green);
+      font: 800 11px/1 "JetBrains Mono", monospace;
+    }
+
+    .lab-top strong {
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .lab-canvas {
+      display: block;
+      width: 100%;
+      height: 280px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(57, 216, 255, 0.09), transparent 38%),
+        #03070c;
+    }
+
+    .analyzer-panel {
+      grid-column: 1 / -1;
+    }
+
+    .analyzer-output {
+      min-height: 220px;
+      padding: 22px;
+      color: #dce8f7;
+      font: 600 14px/1.85 "JetBrains Mono", monospace;
+      background:
+        linear-gradient(90deg, rgba(57, 216, 255, 0.08), transparent),
+        rgba(3, 7, 12, 0.72);
+    }
+
+    .analyzer-output p {
+      margin: 0;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .game-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(8, 12, 19, 0.84);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .target-game,
+    .dodge-game {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(132, 162, 201, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(132, 162, 201, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at 50% 35%, rgba(57, 216, 255, 0.12), transparent 36%),
+        #03070c;
+      background-size: 28px 28px, 28px 28px, auto, auto;
+    }
+
+    .target-dot {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      background: radial-gradient(circle, #fff 0 14%, var(--red) 15% 48%, var(--amber) 49% 100%);
+      box-shadow: 0 0 30px rgba(255, 92, 122, 0.7);
+      transform: translate(-50%, -50%);
+    }
+
+    .game-hud {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      color: #dce8f7;
+      background: rgba(6, 8, 13, 0.72);
+      font: 800 12px/1 "JetBrains Mono", monospace;
+      backdrop-filter: blur(12px);
+    }
+
+    .game-button {
+      width: calc(100% - 24px);
+      margin: 12px;
+    }
+
+    .robot-player {
+      position: absolute;
+      left: 50%;
+      bottom: 54px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(76, 242, 167, 0.65);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 34% 38%, var(--cyan) 0 9%, transparent 10%),
+        radial-gradient(circle at 66% 38%, var(--cyan) 0 9%, transparent 10%),
+        linear-gradient(180deg, rgba(57, 216, 255, 0.18), rgba(76, 242, 167, 0.12));
+      box-shadow: 0 0 28px rgba(57, 216, 255, 0.24);
+      transform: translateX(-50%);
+    }
+
+    .obstacle-block {
+      position: absolute;
+      top: -54px;
+      left: 50%;
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--red), var(--amber));
+      box-shadow: 0 0 24px rgba(255, 92, 122, 0.48);
+      transform: translateX(-50%);
+    }
+
+    .wide-game {
+      grid-column: 1 / -1;
+    }
+
+    .gravity-wrap {
+      display: grid;
+      grid-template-columns: 1fr 250px;
+      min-height: 320px;
+    }
+
+    .gravity-canvas {
+      display: block;
+      width: 100%;
+      height: 320px;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(76, 242, 167, 0.1), transparent 36%),
+        #03070c;
+    }
+
+    .gravity-controls {
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      padding: 20px;
+      border-left: 1px solid rgba(132, 162, 201, 0.18);
+      color: var(--muted);
+      font: 800 13px/1 "JetBrains Mono", monospace;
+    }
+
+    .gravity-controls input {
+      width: 100%;
+      accent-color: var(--green);
+    }
+
+    footer {
+      padding: 38px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font: 500 13px/1.6 "JetBrains Mono", monospace;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .projects,
+      .lab-grid,
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .analyzer-panel,
+      .wide-game {
+        grid-column: auto;
+      }
+
+      .gravity-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .gravity-controls {
+        border-left: 0;
+        border-top: 1px solid rgba(132, 162, 201, 0.18);
+      }
+
+      .terminal-wrap::before,
+      .terminal-wrap::after {
+        display: none;
+      }
+
+      .grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      #hobbies .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 22px, 1120px);
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .terminal-body {
+        padding: 16px;
+        font-size: 12px;
+      }
+
+      .robot {
+        grid-template-columns: 1fr;
+      }
+
+      .avatar-card {
+        min-height: 360px;
+      }
+
+      #hobbies .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="Phuc home">
+        <span class="brand-mark">P</span>
+        <span>Phúc.dev</span>
+      </a>
+      <div class="nav-links" aria-label="Main navigation">
+        <a href="#about">Giới thiệu</a>
+        <a href="#hobbies">Sở thích</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+        <a href="#python-lab">Python Lab</a>
+        <a href="#playground">Playground</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="shell hero">
+      <div>
+        <span class="kicker"><span class="pulse"></span> Lập trình Robotics AI</span>
+        <h1>Xin chào, mình là <span class="gradient-text">Phúc</span>.</h1>
+        <p class="lead">
+          Đây là profile cá nhân của mình. Mình thích lập trình, robotics và AI,
+          thích biến ý tưởng nhỏ thành sản phẩm chạy được và luôn muốn học thêm
+          những công nghệ mới.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Xem dự án</a>
+          <a class="btn ghost" href="#contact">Kết nối</a>
+        </div>
+        <div class="stats" aria-label="Profile stats">
+          <div class="stat"><strong>AI</strong><span>tư duy tự động hóa</span></div>
+          <div class="stat"><strong>BOT</strong><span>thử nghiệm robotics</span></div>
+          <div class="stat"><strong>WEB</strong><span>dự án giao diện web</span></div>
+        </div>
+      </div>
+
+      <div class="profile-visual">
+        <div class="avatar-card" aria-label="Ảnh đại diện của Phúc">
+          <img src="avatar.jpg" alt="Ảnh đại diện của Phúc" onerror="this.style.display='none'" />
+          <div class="avatar-fallback">P</div>
+          <div class="avatar-badge">
+            <span>Phúc</span>
+            <strong>Coder / Robotics Builder</strong>
+          </div>
+        </div>
+
+        <div class="terminal-wrap" aria-label="Developer console preview">
+          <div class="terminal">
+            <div class="terminal-top">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <span class="terminal-title">profile.boot</span>
+            </div>
+            <div class="terminal-body">
+              <span class="line comment">// booting personal portfolio</span>
+              <span class="line"><span class="green">$</span> load profile --name Phuc</span>
+              <span class="line">{</span>
+              <span class="line">  role: <span class="cyan">"student developer"</span>,</span>
+              <span class="line">  focus: [<span class="amber">"Python"</span>, <span class="amber">"robotics"</span>, <span class="amber">"AI"</span>],</span>
+              <span class="line">  status: <span class="green">"learning and building"</span></span>
+              <span class="line">}</span>
+              <div class="robot">
+                <div class="bot-face"><span class="bot-mouth"></span></div>
+                <div>
+                  <strong>AI assistant online</strong>
+                  <p>Ready for web interfaces, robot logic, automation scripts and AI experiments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Giới thiệu</h2>
+          <p>Một trang giới thiệu riêng của Phúc: rõ ràng, có cá tính kỹ thuật và tập trung vào lập trình, robotics, AI.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="icon">&lt;/&gt;</div>
+            <h3>Lập trình</h3>
+            <p>Mình thích viết code để tạo ra những thứ nhìn thấy được, chạy được và có thể phát triển tiếp.</p>
+          </article>
+          <article class="card">
+            <div class="icon">AI</div>
+            <h3>Trí tuệ nhân tạo</h3>
+            <p>Mình quan tâm đến cách AI hỗ trợ học tập, lập trình, tự động hóa và tạo ra những trải nghiệm thông minh hơn.</p>
+          </article>
+          <article class="card">
+            <div class="icon">RX</div>
+            <h3>Robotics</h3>
+            <p>Mình muốn tìm hiểu robot, cảm biến, điều khiển và cách phần mềm kết nối với thế giới thật.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hobbies">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Sở thích</h2>
+          <p>Ngoài học tập và làm project, mình thích các hoạt động giúp mình vừa năng động vừa sáng tạo hơn.</p>
+        </div>
+        <div class="grid">
+          <article class="card hobby-card">
+            <div class="icon">SP</div>
+            <h3>Chơi thể thao</h3>
+            <p>Mình thích vận động, rèn sức bền và giữ tinh thần tập trung hơn sau những giờ học hoặc viết code.</p>
+          </article>
+          <article class="card hobby-card">
+            <div class="icon">GG</div>
+            <h3>Chơi game</h3>
+            <p>Game giúp mình giải trí, luyện phản xạ, tư duy chiến thuật và quan sát cách người ta thiết kế trải nghiệm.</p>
+          </article>
+          <article class="card hobby-card">
+            <div class="icon">&lt;/&gt;</div>
+            <h3>Viết code</h3>
+            <p>Mình thích biến ý tưởng thành sản phẩm thật bằng web, Python, automation và các thử nghiệm nhỏ.</p>
+          </article>
+          <article class="card hobby-card">
+            <div class="icon">RB</div>
+            <h3>Build robot</h3>
+            <p>Mình thích lắp ráp, thử cảm biến, điều khiển chuyển động và làm robot phản ứng với môi trường.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Công nghệ</h2>
+          <p>Các công nghệ và công cụ mình dùng để học, thử nghiệm, xây dựng giao diện và làm các dự án kỹ thuật.</p>
+        </div>
+        <div class="stack">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Python</span>
+          <span class="chip">Arduino</span>
+          <span class="chip">Công cụ AI</span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">Thiết kế UI</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Dự án</h2>
+          <p>Một project nhỏ bằng Python: tạo hình trái tim động trong terminal, vừa dễ thương vừa có vibe coder.</p>
+        </div>
+        <div class="projects">
+          <article class="project-main">
+            <div class="circuit"></div>
+            <h3>Python Heart Animation</h3>
+            <p>
+              Đây là màn hình output mô phỏng project Python tạo trái tim động trong terminal.
+              Animation chạy trực tiếp trên web để người xem thấy kết quả ngay, không cần mở code.
+            </p>
+            <div class="output-card" aria-label="Animated heart output">
+              <div class="output-top">
+                <span class="output-title">python heart_animation.py</span>
+                <span class="output-live">RUNNING</span>
+              </div>
+              <pre id="heart-output" class="heart-output"></pre>
+            </div>
+          </article>
+          <div class="project-list">
+            <article class="mini">
+              <span>Python</span>
+              <h3>Preview ngay trên web</h3>
+              <p>Người xem thấy output chạy trực tiếp mà không cần copy code hay mở terminal.</p>
+            </article>
+            <article class="mini">
+              <span>Animation</span>
+              <h3>Hiệu ứng trái tim động</h3>
+              <p>Dùng vòng lặp, công thức toán và ký tự ASCII để tạo cảm giác chuyển động.</p>
+            </article>
+            <article class="mini">
+              <span>Mini project</span>
+              <h3>Dễ chỉnh sửa</h3>
+              <p>Có thể đổi tốc độ, ký tự phát sáng hoặc dòng chữ cuối theo phong cách riêng.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="python-lab">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Python Lab</h2>
+          <p>Một vài mô hình nhỏ lấy cảm hứng từ Python: trực quan, dễ hiểu và có cảm giác như đang chạy trong terminal.</p>
+        </div>
+        <div class="lab-grid">
+          <article class="lab-panel matrix-panel">
+            <div class="lab-top">
+              <span>01 / MATRIX STREAM</span>
+              <strong>Code Rain</strong>
+            </div>
+            <canvas id="matrix-canvas" class="lab-canvas" aria-label="Mưa ký tự mô phỏng code Python"></canvas>
+          </article>
+
+          <article class="lab-panel particles-panel">
+            <div class="lab-top">
+              <span>02 / SIMULATION</span>
+              <strong>Particle Physics</strong>
+            </div>
+            <canvas id="particle-canvas" class="lab-canvas" aria-label="Mô phỏng hạt chuyển động"></canvas>
+          </article>
+
+          <article class="lab-panel analyzer-panel">
+            <div class="lab-top">
+              <span>03 / MINI AI</span>
+              <strong>Idea Analyzer</strong>
+            </div>
+            <div class="analyzer-output" aria-label="Output phân tích ý tưởng">
+              <p><span class="green">$</span> python idea_analyzer.py</p>
+              <p>input: "build robot with camera"</p>
+              <p>score.creativity = <span class="cyan">94%</span></p>
+              <p>score.difficulty = <span class="amber">medium+</span></p>
+              <p>suggestion = "start with sensor + motor control"</p>
+              <p class="comment"># next step: prototype small, test often</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="playground">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Interactive Playground</h2>
+          <p>Một vài mô hình nhỏ có thể tương tác như game, đơn giản nhưng đúng vibe code, robot và mô phỏng.</p>
+        </div>
+        <div class="game-grid">
+          <article class="game-panel">
+            <div class="lab-top">
+              <span>GAME 01</span>
+              <strong>Target Click</strong>
+            </div>
+            <div id="target-game" class="target-game" aria-label="Game click mục tiêu">
+              <button id="target-dot" class="target-dot" type="button" aria-label="Click mục tiêu"></button>
+              <div class="game-hud">
+                <span>Score: <strong id="target-score">0</strong></span>
+                <span>Time: <strong id="target-time">20</strong>s</span>
+              </div>
+            </div>
+            <button id="target-start" class="btn ghost game-button" type="button">Start</button>
+          </article>
+
+          <article class="game-panel">
+            <div class="lab-top">
+              <span>GAME 02</span>
+              <strong>Robot Dodge</strong>
+            </div>
+            <div id="dodge-game" class="dodge-game" aria-label="Game robot né vật cản">
+              <div id="robot-player" class="robot-player"></div>
+              <div id="obstacle-block" class="obstacle-block"></div>
+              <div class="game-hud">
+                <span>Use A / D</span>
+                <span>Dodges: <strong id="dodge-score">0</strong></span>
+              </div>
+            </div>
+            <button id="dodge-start" class="btn ghost game-button" type="button">Start</button>
+          </article>
+
+          <article class="game-panel wide-game">
+            <div class="lab-top">
+              <span>SIM 03</span>
+              <strong>Gravity Sandbox</strong>
+            </div>
+            <div class="gravity-wrap">
+              <canvas id="gravity-canvas" class="gravity-canvas" aria-label="Mô phỏng trọng lực tương tác"></canvas>
+              <div class="gravity-controls">
+                <label for="gravity-slider">Gravity</label>
+                <input id="gravity-slider" type="range" min="0.05" max="0.9" step="0.05" value="0.35">
+                <button id="gravity-reset" class="btn ghost" type="button">Reset</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Liên hệ</h2>
+          <p>Kết nối với mình qua các nền tảng bên dưới.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/phucs12t34-dev">GitHub</a>
+          <a class="btn ghost" href="https://www.facebook.com/thanh.phuc.934942">Facebook</a>
+          <a class="btn ghost" href="mailto:your-email@example.com">Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">/* xây dựng cho Phúc - portfolio lập trình robotics AI */</div>
+  </footer>
+  <script>
+    const heartOutput = document.getElementById("heart-output");
+    const frames = " .:-=+*#%@";
+    let tick = 0;
+
+    function heartFormula(x, y) {
+      return Math.pow(x * x + y * y - 1, 3) - x * x * Math.pow(y, 3);
+    }
+
+    function renderHeart() {
+      const pulse = 1 + 0.08 * Math.sin(tick * 0.18);
+      const rows = [];
+
+      for (let row = 13; row >= -13; row -= 1) {
+        let line = "";
+
+        for (let col = -32; col <= 32; col += 1) {
+          const x = col / 16 / pulse;
+          const y = row / 8 / pulse;
+
+          if (heartFormula(x, y) <= 0) {
+            const glow = Math.floor((Math.sin(tick * 0.22 + row * 0.42) + 1) * 4);
+            line += frames[Math.min(glow + 4, frames.length - 1)];
+          } else {
+            line += " ";
+          }
+        }
+
+        rows.push(line);
+      }
+
+      rows.push("");
+      rows.push("        Made with Python <3");
+      heartOutput.textContent = rows.join("\n");
+      tick += 1;
+    }
+
+    renderHeart();
+    setInterval(renderHeart, 90);
+
+    const matrixCanvas = document.getElementById("matrix-canvas");
+    const matrixCtx = matrixCanvas.getContext("2d");
+    const matrixChars = "01{}[]<>/=_pythonAIrobot";
+    let matrixDrops = [];
+
+    function sizeCanvas(canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(rect.height * dpr);
+      return { width: canvas.width, height: canvas.height, dpr };
+    }
+
+    function resetMatrix() {
+      const { width, height } = sizeCanvas(matrixCanvas);
+      const fontSize = 16 * (window.devicePixelRatio || 1);
+      const columns = Math.floor(width / fontSize);
+      matrixDrops = Array.from({ length: columns }, () => Math.random() * height);
+    }
+
+    function drawMatrix() {
+      const dpr = window.devicePixelRatio || 1;
+      const fontSize = 16 * dpr;
+      matrixCtx.fillStyle = "rgba(3, 7, 12, 0.18)";
+      matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+      matrixCtx.font = `${fontSize}px JetBrains Mono, monospace`;
+
+      matrixDrops.forEach((drop, index) => {
+        const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        matrixCtx.fillStyle = Math.random() > 0.88 ? "#39d8ff" : "#4cf2a7";
+        matrixCtx.fillText(text, index * fontSize, drop);
+        matrixDrops[index] = drop > matrixCanvas.height && Math.random() > 0.965 ? 0 : drop + fontSize;
+      });
+
+      requestAnimationFrame(drawMatrix);
+    }
+
+    const particleCanvas = document.getElementById("particle-canvas");
+    const particleCtx = particleCanvas.getContext("2d");
+    let particles = [];
+
+    function resetParticles() {
+      const { width, height } = sizeCanvas(particleCanvas);
+      particles = Array.from({ length: 34 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 1.5 * (window.devicePixelRatio || 1),
+        vy: (Math.random() - 0.5) * 1.5 * (window.devicePixelRatio || 1),
+        r: (2 + Math.random() * 3) * (window.devicePixelRatio || 1)
+      }));
+    }
+
+    function drawParticles() {
+      particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+      particleCtx.fillStyle = "rgba(3, 7, 12, 0.95)";
+      particleCtx.fillRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+      particles.forEach((particle) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x < 0 || particle.x > particleCanvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > particleCanvas.height) particle.vy *= -1;
+
+        particleCtx.beginPath();
+        particleCtx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+        particleCtx.fillStyle = "#39d8ff";
+        particleCtx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i += 1) {
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.hypot(dx, dy);
+
+          if (distance < 130 * (window.devicePixelRatio || 1)) {
+            particleCtx.strokeStyle = `rgba(76, 242, 167, ${1 - distance / (130 * (window.devicePixelRatio || 1))})`;
+            particleCtx.lineWidth = 1;
+            particleCtx.beginPath();
+            particleCtx.moveTo(particles[i].x, particles[i].y);
+            particleCtx.lineTo(particles[j].x, particles[j].y);
+            particleCtx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    resetMatrix();
+    resetParticles();
+    drawMatrix();
+    drawParticles();
+
+    window.addEventListener("resize", () => {
+      resetMatrix();
+      resetParticles();
+      resetGravity();
+    });
+
+    const targetGame = document.getElementById("target-game");
+    const targetDot = document.getElementById("target-dot");
+    const targetStart = document.getElementById("target-start");
+    const targetScore = document.getElementById("target-score");
+    const targetTime = document.getElementById("target-time");
+    let targetTimer = null;
+    let targetSeconds = 20;
+    let targetPoints = 0;
+
+    function moveTarget() {
+      const rect = targetGame.getBoundingClientRect();
+      const x = 36 + Math.random() * (rect.width - 72);
+      const y = 44 + Math.random() * (rect.height - 104);
+      targetDot.style.left = `${x}px`;
+      targetDot.style.top = `${y}px`;
+    }
+
+    targetDot.addEventListener("click", () => {
+      if (!targetTimer) return;
+      targetPoints += 1;
+      targetScore.textContent = targetPoints;
+      moveTarget();
+    });
+
+    targetStart.addEventListener("click", () => {
+      clearInterval(targetTimer);
+      targetSeconds = 20;
+      targetPoints = 0;
+      targetScore.textContent = targetPoints;
+      targetTime.textContent = targetSeconds;
+      moveTarget();
+
+      targetTimer = setInterval(() => {
+        targetSeconds -= 1;
+        targetTime.textContent = targetSeconds;
+
+        if (targetSeconds <= 0) {
+          clearInterval(targetTimer);
+          targetTimer = null;
+          targetStart.textContent = "Play again";
+        }
+      }, 1000);
+    });
+
+    moveTarget();
+
+    const robotPlayer = document.getElementById("robot-player");
+    const obstacleBlock = document.getElementById("obstacle-block");
+    const dodgeStart = document.getElementById("dodge-start");
+    const dodgeScore = document.getElementById("dodge-score");
+    let robotX = 50;
+    let obstacleX = 50;
+    let obstacleY = -20;
+    let dodgePoints = 0;
+    let dodgeRunning = false;
+
+    function updateRobot() {
+      robotPlayer.style.left = `${robotX}%`;
+      obstacleBlock.style.left = `${obstacleX}%`;
+      obstacleBlock.style.top = `${obstacleY}px`;
+    }
+
+    function resetObstacle() {
+      obstacleY = -54;
+      obstacleX = 10 + Math.random() * 80;
+    }
+
+    function dodgeLoop() {
+      if (!dodgeRunning) return;
+      const gameHeight = document.getElementById("dodge-game").clientHeight;
+      obstacleY += 4;
+
+      if (obstacleY > gameHeight - 100) {
+        const hit = Math.abs(obstacleX - robotX) < 10;
+
+        if (hit) {
+          dodgeRunning = false;
+          dodgeStart.textContent = "Play again";
+        } else if (obstacleY > gameHeight) {
+          dodgePoints += 1;
+          dodgeScore.textContent = dodgePoints;
+          resetObstacle();
+        }
+      }
+
+      updateRobot();
+      requestAnimationFrame(dodgeLoop);
+    }
+
+    dodgeStart.addEventListener("click", () => {
+      robotX = 50;
+      dodgePoints = 0;
+      dodgeScore.textContent = dodgePoints;
+      dodgeRunning = true;
+      dodgeStart.textContent = "Running";
+      resetObstacle();
+      updateRobot();
+      dodgeLoop();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key.toLowerCase() === "a") robotX = Math.max(8, robotX - 7);
+      if (event.key.toLowerCase() === "d") robotX = Math.min(92, robotX + 7);
+      updateRobot();
+    });
+
+    const gravityCanvas = document.getElementById("gravity-canvas");
+    const gravityCtx = gravityCanvas.getContext("2d");
+    const gravitySlider = document.getElementById("gravity-slider");
+    const gravityReset = document.getElementById("gravity-reset");
+    let gravityBalls = [];
+
+    function resetGravity() {
+      const { width, height } = sizeCanvas(gravityCanvas);
+      const dpr = window.devicePixelRatio || 1;
+      gravityBalls = Array.from({ length: 9 }, (_, index) => ({
+        x: width * (0.15 + Math.random() * 0.7),
+        y: height * (0.12 + Math.random() * 0.2),
+        vx: (Math.random() - 0.5) * 4 * dpr,
+        vy: Math.random() * 2 * dpr,
+        r: (10 + index * 1.5) * dpr,
+        color: index % 2 === 0 ? "#39d8ff" : "#4cf2a7"
+      }));
+    }
+
+    function drawGravity() {
+      const dpr = window.devicePixelRatio || 1;
+      const gravity = Number(gravitySlider.value) * dpr;
+      gravityCtx.clearRect(0, 0, gravityCanvas.width, gravityCanvas.height);
+      gravityCtx.fillStyle = "rgba(3, 7, 12, 0.95)";
+      gravityCtx.fillRect(0, 0, gravityCanvas.width, gravityCanvas.height);
+
+      gravityBalls.forEach((ball) => {
+        ball.vy += gravity;
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        if (ball.x < ball.r || ball.x > gravityCanvas.width - ball.r) {
+          ball.vx *= -0.9;
+          ball.x = Math.max(ball.r, Math.min(gravityCanvas.width - ball.r, ball.x));
+        }
+
+        if (ball.y > gravityCanvas.height - ball.r) {
+          ball.y = gravityCanvas.height - ball.r;
+          ball.vy *= -0.78;
+          ball.vx *= 0.99;
+        }
+
+        gravityCtx.beginPath();
+        gravityCtx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        gravityCtx.fillStyle = ball.color;
+        gravityCtx.shadowBlur = 22 * dpr;
+        gravityCtx.shadowColor = ball.color;
+        gravityCtx.fill();
+        gravityCtx.shadowBlur = 0;
+      });
+
+      requestAnimationFrame(drawGravity);
+    }
+
+    gravityCanvas.addEventListener("click", (event) => {
+      const rect = gravityCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      gravityBalls.push({
+        x: (event.clientX - rect.left) * dpr,
+        y: (event.clientY - rect.top) * dpr,
+        vx: (Math.random() - 0.5) * 5 * dpr,
+        vy: -8 * dpr,
+        r: 12 * dpr,
+        color: Math.random() > 0.5 ? "#ffc857" : "#ff5c7a"
+      });
+    });
+
+    gravityReset.addEventListener("click", resetGravity);
+    resetGravity();
+    drawGravity();
+  </script>
+</body>
+</html>
